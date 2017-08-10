@@ -38,6 +38,30 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
+  - libwebp (0.5.1):
+    - libwebp/core (= 0.5.1)
+    - libwebp/dec (= 0.5.1)
+    - libwebp/demux (= 0.5.1)
+    - libwebp/dsp (= 0.5.1)
+    - libwebp/enc (= 0.5.1)
+    - libwebp/mux (= 0.5.1)
+    - libwebp/utils (= 0.5.1)
+    - libwebp/webp (= 0.5.1)
+  - libwebp/core (0.5.1):
+    - libwebp/webp
+  - libwebp/dec (0.5.1):
+    - libwebp/core
+  - libwebp/demux (0.5.1):
+    - libwebp/core
+  - libwebp/dsp (0.5.1):
+    - libwebp/core
+  - libwebp/enc (0.5.1):
+    - libwebp/core
+  - libwebp/mux (0.5.1):
+    - libwebp/core
+  - libwebp/utils (0.5.1):
+    - libwebp/core
+  - libwebp/webp (0.5.1)
   - MaterialComponents (22.0.0):
     - MaterialComponents/ActivityIndicator (= 22.0.0)
     - MaterialComponents/AnimationTiming (= 22.0.0)
@@ -192,12 +216,17 @@ PODS:
   - MaterialComponents/Typography (22.0.0):
     - MaterialComponents/private/Application
   - MDFTextAccessibility (1.1.4)
+  - SDWebImage/Core (4.0.0)
+  - SDWebImage/WebP (4.0.0):
+    - libwebp
+    - SDWebImage/Core
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
   - MaterialComponents
+  - SDWebImage/WebP
 
 SPEC CHECKSUMS:
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
@@ -209,9 +238,11 @@ SPEC CHECKSUMS:
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  libwebp: b9126f8982a95370cf4eaad9bb3fefd57f052c15
   MaterialComponents: 5b9fb963ed4fa4c5d7a337cc6867c5ba65d8d324
   MDFTextAccessibility: aa897b2675bc614c01a331053af680deea692148
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: c980c93f745ed7a37560cde6ff4f19d1ebdf12a9
+PODFILE CHECKSUM: b6099c7f1332f8ae3c477d7b4e955cc124457eb5
 
 COCOAPODS: 1.2.0
