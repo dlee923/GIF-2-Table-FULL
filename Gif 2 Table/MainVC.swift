@@ -37,7 +37,7 @@ class MainVC: UIViewController {
         print("main VC deinit")
     }
     
-    let imageCache = NSCache<AnyObject, AnyObject>()
+    
     
     lazy var titleView: TitleView = {
         let _titleView = TitleView()

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
 extension UIView {
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewDictionary = [String: UIView]()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 import MaterialComponents.MaterialCollectionCells
 
 extension UILabel {
@@ -73,11 +74,22 @@ class MainRecipeCell: StockMDCCell {
             if let downloadedImg = recipe?.downloadedImage {
                 self.fadeInImage(recipe: self.recipe!, recipeImage: self.recipeImage, downloadedImage: downloadedImg)
             } else {
-                recipe?.downloadCoverImage(completion: { (coverImage, sameTitle) in
-                    if self.recipe?.recipeTitle == sameTitle {
-                        self.fadeInImage(recipe: self.recipe!, recipeImage: self.recipeImage, downloadedImage: coverImage)
-                    }
+                
+                guard let imageURL = URL(string: (self.recipe?.recipeImageLink)!) else { return }
+                
+                
+                self.recipeImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "g2tplaceholder")?.withRenderingMode(.alwaysTemplate), options: .refreshCached, completed: { (downloadedImage, error, cacheType, url) in
+                    self.recipe?.downloadedImage = downloadedImage
+                    self.fadeInImage(recipe: self.recipe!, recipeImage: self.recipeImage, downloadedImage: downloadedImage!)
                 })
+                
+                
+                
+//                recipe?.downloadCoverImage(completion: { (coverImage, sameTitle) in
+//                    if self.recipe?.recipeTitle == sameTitle {
+//                        self.fadeInImage(recipe: self.recipe!, recipeImage: self.recipeImage, downloadedImage: coverImage)
+//                    }
+//                })
             }
             
             titleLabel.text = recipe?.recipeTitle
@@ -116,7 +128,7 @@ class MainRecipeCell: StockMDCCell {
     
     let recipeImage: UIImageView = {
         let _recipeImage = UIImageView()
-        _recipeImage.contentMode = .scaleAspectFit
+        _recipeImage.contentMode = .scaleAspectFill
         _recipeImage.tintColor = tintedBlackLight.withAlphaComponent(0.5)
         _recipeImage.image = UIImage(named: "g2tplaceholder")?.withRenderingMode(.alwaysTemplate)
         _recipeImage.clipsToBounds = true

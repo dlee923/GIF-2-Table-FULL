@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SDWebImage
 import UIKit
 
 class RecipeObject: NSObject {
@@ -22,13 +23,12 @@ class RecipeObject: NSObject {
     var likes: Int?
     var dislikes: Int?
     var recipeChild: String?
-    var mainVC: MainVC?
     var difficulty: Difficulty?
     var shouldfade: Bool = true
     var category: String?
     var downloadedImage: UIImage?
     
-    init(link: String, title: String, imageLink: String, ingredients: [[String: String]], favorite: Bool, like: Bool, dislike: Bool, likes: Int, dislikes: Int, child: String, mainVC: MainVC?, category: String) {
+    init(link: String, title: String, imageLink: String, ingredients: [[String: String]], favorite: Bool, like: Bool, dislike: Bool, likes: Int, dislikes: Int, child: String, category: String) {
         recipeLink = link
         recipeTitle = title
         recipeImageLink = imageLink
@@ -39,7 +39,6 @@ class RecipeObject: NSObject {
         self.likes = likes
         self.dislikes = dislikes
         recipeChild = child
-        self.mainVC = mainVC
         self.category = category
         
         if ingredients.count <= 8 {
@@ -88,7 +87,7 @@ extension RecipeObject {
         guard let imageURL = URL(string: imageLink!) else { return }
         passedImageURL = imageLink
         
-        if let cachedImage = mainVC?.imageCache.object(forKey: imageLink as AnyObject) as? UIImage {
+        if let cachedImage = imageCache.object(forKey: imageLink as AnyObject) as? UIImage {
             DispatchQueue.main.async {
                 completion(cachedImage, self.recipeTitle!)
                 print("using cached image")
@@ -103,7 +102,7 @@ extension RecipeObject {
                 
                 if self.passedImageURL == imageLink {                    
                     guard let coverImage = UIImage(data: data!) else { return }
-                    self.mainVC?.imageCache.setObject(coverImage, forKey: imageLink as AnyObject)
+                    imageCache.setObject(coverImage, forKey: imageLink as AnyObject)
                     
                     DispatchQueue.main.async {
                         completion(coverImage, self.recipeTitle!)
